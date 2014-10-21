@@ -142,7 +142,6 @@
 
             &:before {
                 content: 'Left';
-                text-transform: uppercase;
                 font-weight: bold;
                 font-style: normal;
                 display: block;
@@ -151,7 +150,6 @@
 
         .post-image-caption-right:before {
             content: 'Right';
-            text-transform: uppercase;
             font-weight: bold;
             font-style: normal;
             display: block;
@@ -181,7 +179,6 @@
         font-family: $title-font;
         font-weight: bold;
         display: inline;
-        text-transform: uppercase;
         font-size: $caption-text-size;
         margin-right: 5px;
         letter-spacing: 1px;
