@@ -16,6 +16,8 @@
     }
 
     .about-avatar {
+        width: $avatar-size;
+        height: $avatar-size;
         transition-property: margin;
         transition-duration: 0.3s;
         transition-timing-function: ease-in-out;
@@ -33,7 +35,6 @@
 
     .about-body-title {
         font-weight: bold;
-        text-transform: uppercase;
         padding-bottom: 5px;
         border-bottom: 1px solid rgba(229, 229, 229, 0.5);
         margin: 0 0 10px;
