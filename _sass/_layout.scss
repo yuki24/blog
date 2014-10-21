@@ -29,9 +29,6 @@
 }
 
 header {
-    transition-property: margin padding;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
     margin: 0 0 40px;
     padding-top: 50px; // 40px margin [has to be padding for sticky footer] + 10px for ribbon [positioned absolutely]
     padding-bottom: 10px;
@@ -45,6 +42,9 @@ header {
 
 @media only screen and (max-width : 480px) {
     header {
+        transition-property: margin padding;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
         padding-top: 30px;
         margin: 0 0 20px;
     }
