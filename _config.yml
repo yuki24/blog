@@ -9,7 +9,7 @@ twitter_username: "yuki24"
 github_username:  "yuki24"
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
 permalink: /:year/:month/:day/:title.html
 
 # Pagination
