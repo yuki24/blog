@@ -1,8 +1,8 @@
 // Typography
 
     // Fonts
-    $regular-font: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-    $title-font: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+    $regular-font: "kepler-std", Georgia, Times, serif !default;
+    $title-font: $regular-font;
     $subtitle-font: 'American Typewriter', Courier, serif !default;
     $caption-font: 'Chaparral Pro', 'American Typewriter', Courier, serif !default;
 
