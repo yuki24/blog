@@ -25,3 +25,15 @@ a {
         color: $link-colour-over;
     }
 }
+
+code, kbd, pre, samp {
+  line-height: $code-line-height;
+  font-family: $code-font-family;
+  font-size: $code-size;
+}
+
+pre {
+  border-radius: 3px;
+  background-color: $code-background;
+  padding: 16px;
+}

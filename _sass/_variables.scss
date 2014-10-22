@@ -21,6 +21,13 @@
     $subtitle-text-size: 20px !default;
     $caption-text-size: 17px !default;
 
+// Syntax highlighting
+
+    $code-size: 0.9em !default;
+    $code-background: #f7f7f7 !default;
+    $code-line-height: 1.45 !default;
+    $code-font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
+
 // Layout
 
     // Footer

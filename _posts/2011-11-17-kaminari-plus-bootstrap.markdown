@@ -23,7 +23,7 @@ When using twitter bootstrap with Ruby on Rails, installing via gem is the stand
 
 First, make sure your Gemfile contains the following lines.
 
-```
+```ruby
 gem 'kaminari'
 gem 'twitter-bootstrap-rails', :group => :assets 
 ```
