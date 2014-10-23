@@ -11,7 +11,7 @@ Everytime I misspelled a method name or a class name and got an error but didn't
 
 > _"Weird, nothing looks weird..."_
 
-Sometimes I wasted hours and hours just becaue there is one charactor difference. I hate it.
+Sometimes I wasted hours and hours just becaue there is one character difference. I hate it.
 
 This is why I created [`did_you_mean`](https://github.com/yuki24/did_you_mean) gem. With it, whenever you get `NoMethodError` or `NameError`, it'll automatically look for what you really wanted to call and tell it to you.
 
@@ -19,7 +19,7 @@ This is why I created [`did_you_mean`](https://github.com/yuki24/did_you_mean) g
 gem 'did_you_mean', group: [:development, :test]
 ```
 
-So what will happen when you misspell ActiveSupprt's `Hash#with_indifferent_access`? Here is what it looks like:
+So what will happen when you misspell ActiveSupport's `Hash#with_indifferent_access`? Here is what it looks like:
 
 ```ruby
 hash.with_inddiferent_access
@@ -31,7 +31,7 @@ hash.with_inddiferent_access
 
 Look! Now you can just copy and paste what was suggested and it'll just work.
 
-`did_you_mean` gem automagically puts method suggestions into the error message. This means you'll have the _"Did you mean?"_ experience almost everywhere. Here is a good exmaple of a suggestion from my real development:
+`did_you_mean` gem automagically puts method suggestions into the error message. This means you'll have the _"Did you mean?"_ experience almost everywhere. Here is a good example of a suggestion from my real development:
 
 <img
   src="/img/2014-10-21-did-you-mean-experience-in-ruby/screenshot.png"
