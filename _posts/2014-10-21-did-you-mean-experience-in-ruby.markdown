@@ -13,7 +13,7 @@ Everytime I misspelled a method name or a class name and got an error but didn't
 
 Sometimes I wasted hours and hours just because there is one character difference. I hate it.
 
-This is why I created [`did_you_mean`](https://github.com/yuki24/did_you_mean) gem. With it, whenever you get `NoMethodError` or `NameError`, it'll automatically look for what you really wanted to call and tell it to you.
+This is why I created [`did_you_mean`](https://github.com/yuki24/did_you_mean?link=1) gem. With it, whenever you get `NoMethodError` or `NameError`, it'll automatically look for what you really wanted to call and tell it to you.
 
 ```ruby
 gem 'did_you_mean', group: [:development, :test]
@@ -38,6 +38,6 @@ Look! Now you can just copy and paste what was suggested and it'll just work.
   alt="Example of a method suggestion in real development"
   width="100%" />
 
-You can find more examples on the project page on GitHub: [yuki24/did\_you\_mean](https://github.com/yuki24/did_you_mean)
+You can find more examples on the project page on GitHub: [yuki24/did\_you\_mean](https://github.com/yuki24/did_you_mean?link=2)
 
-Start using [`did_you_mean`](https://github.com/yuki24/did_you_mean) gem and stop worrying about misspelling. Ruby will just read your mind.
+Start using [`did_you_mean`](https://github.com/yuki24/did_you_mean?link=3) gem and stop worrying about misspelling. Ruby will just read your mind.
