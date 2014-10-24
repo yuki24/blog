@@ -11,7 +11,7 @@ Everytime I misspelled a method name or a class name and got an error but didn't
 
 > _"Weird, nothing looks weird..."_
 
-Sometimes I wasted hours and hours just becaue there is one character difference. I hate it.
+Sometimes I wasted hours and hours just because there is one character difference. I hate it.
 
 This is why I created [`did_you_mean`](https://github.com/yuki24/did_you_mean) gem. With it, whenever you get `NoMethodError` or `NameError`, it'll automatically look for what you really wanted to call and tell it to you.
 
