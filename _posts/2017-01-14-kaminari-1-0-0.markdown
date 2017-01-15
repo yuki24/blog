@@ -1,0 +1,90 @@
+---
+layout: post
+title:  5 Major Changes in Kaminari 1.0.0
+date:   2017-01-14 22:47:54
+categories: engineering
+location: New York, NY
+tags: ruby rails
+---
+
+<br />
+Today, I'm pleased to announce that kaminari has it's first major release! Because 1.0.0 has a number of major changes, I would like to summarize the main changes.
+
+
+# Support for Old Versions of Ruby and Rails Have Been Dropped
+
+In Kaminari 1.0.0, we decided to discontinue support for the following versions:
+
+ * Ruby 1.9.3
+ * JRuby 1.7
+ * Rails 3.2 and 4.0
+
+If you are using one or more of these versions, make sure to upgrade them first before upgrading to Kaminari 1.0.0.
+
+
+# Breaking up Gems
+
+The most significant change in Kaminari 1.0.0 is the gem has now been split up into separate gems, e.g., [kaminari-activerecord](https://github.com/kaminari/kaminari/tree/master/kaminari-activerecord). If you are using kaminari with Rails and ActiveRecord, which is the most common use for kaminari, in 1.0.0 Kaminari can be used the same way as before so long as...
+
+```ruby
+gem 'kaminari'
+```
+
+...is present in the Gemfile, with no change being necessary. But if you are using Kaminari with another framework like [Sinatra](http://www.sinatrarb.com/) or a different ORM like [Mongoid](https://docs.mongodb.com/ruby-driver/master/mongoid/#ruby-mongoid-tutorial) (or both together), then you’d need to add the individual gems for them. For example, if you are using Rails and Mongoid, then you should have:
+
+```ruby
+gem 'kaminari-core'
+gem 'kaminari-mongoid'
+gem 'kaminari-actionview'
+```
+
+But if you are using Sinatra and ActiveRecord, then you should have:
+
+```ruby
+gem 'kaminari-core'
+gem 'kaminari-activerecord'
+gem 'kaminari-sinatra'
+```
+
+*(kaminari-core can be omitted, since it is referred to by the other gems.)*
+
+The gems that are currently supported can be found at [https://github.com/kaminari](https://github.com/kaminari). Also, if you are maintaining a gem for a specific DB which implements an interface to Kaminari and would like to move the repo to our organization, we would be more than happy to do so. That way everyone will be able to keep up-to-date when we make a breaking API change in the [kaminari-core](https://github.com/kaminari/kaminari/tree/master/kaminari-core) repo.
+
+
+# Experimental Pagination without Count
+
+In order to display the links needed for pagination, Kaminari issues a count query to the db. However, if there is an enormous amount of data in the DB, then calculating the count could take a great deal of time (depending on the RDBMS), creating a major performance bottleneck. 
+
+To work around this issue, starting 1.0.0 the `#without_count` method has been added. This method obtains records for the number of elements displayed on the page — plus one. Then it figures out whether or not we need a next page if additional elements still exist. The downside to this is, it becomes theoretically impossible to display the total number of pages, although the `#link_to_next_page` method and the `#link_to_previous_page` methods can be used without a count query.
+
+```ruby
+@users = User.page(params[:page]).without_count
+```
+
+In 1.0.0, this has been introduced as an experimental feature, so a `#without_count` call needs to be invoked explicitly. If no major problems are reported, then in the future we plan to make this the default. Please try this out if you are having difficulty with count queries.
+
+
+# The `-e haml/slim` Options for `rails g kaminari:views` Have Been Deprecated
+
+Up until now [haml](http://haml.info/), [slim](http://slim-lang.com/), and erb templates have all been organized in the repository, and it has been possible to generate haml or slim templates for your app using the `-e` option. Yet, while it’s possible to change erb to haml or slim with a single command like [html2haml](https://github.com/haml/html2haml), the cost of maintaining the haml and slim templates in the repository is extremely high. Regardless of the situation with haml, none of the maintainers understand slim syntax, so if a pull request is filed to [kaminari_themes](https://github.com/amatsuda/kaminari_themes), maintainers have been unable to judge what is correct. What is more, if there is a change in haml or slim syntax, then there is no way to manage templates for multiple versions — or it is a great deal of work. In addition, in the remote chance that a new template engine is implemented, it would probably be necessary to add new template files for all themes.
+
+We decided to deal with this situation by deprecating the `-e haml/slim` option and having users make changes locally when they want to use haml or slim in the future. In other words, we are treating the erb template as something like a single source of truth. In addition, our policy, as of 1.0.0, will be to only have erb when new templates are added, and only accept bugfix patches to the existing haml/slim templates.
+
+
+# `params_on_first_page` Config Has Been Added
+
+Up until now, the link to the first page shown by the `#paginate` method ignored all params. However, there has been a problem that if, for example, a feature such as filtering is implemented using params, and if you return to the first page, then all of the filters would vanish. To fix this, the `params_on_first_page` config was added.
+
+```ruby
+# Typically this file is located at `config/initializers/kaminari_config.rb`
+Kaminari.configure do |config|
+  config.params_on_first_page = true
+end
+```
+
+If `params_on_first_page` is set to true, all query parameters will also be present in the link to the first page just like in other links.
+
+
+# Give Us Your Feedback
+
+There are many other changes not mentioned here. To find out more, please check the [CHANGELOG](https://github.com/kaminari/kaminari/blob/master/CHANGELOG.md#100). If you run across anything unusual while using Kaminari or discover anything like a bug, please be sure to file an issue on [GitHub issues](https://github.com/kaminari/kaminari/issues).
