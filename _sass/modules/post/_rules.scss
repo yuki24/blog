@@ -5,7 +5,15 @@
     }
 
     .post-body {
+        h1 { margin-top: 60px; }
         p { line-height: 32px; }
+        ul {
+            padding-left: 40px;
+            list-style-type: disc;
+            li {
+                line-height: 32px;
+            }
+        }
     }
 
     .post-header {
