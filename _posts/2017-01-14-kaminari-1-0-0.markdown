@@ -68,12 +68,12 @@ In 1.0.0, this has been introduced as an experimental feature, so a `#without_co
 
 Up until now [haml](http://haml.info/), [slim](http://slim-lang.com/), and erb templates have all been organized in the repository, and it has been possible to generate haml or slim templates for your app using the `-e` option. Yet, while it’s possible to change erb to haml or slim with a single command like [html2haml](https://github.com/haml/html2haml), the cost of maintaining the haml and slim templates in the repository is extremely high. Regardless of the situation with haml, none of the maintainers understand slim syntax, so if a pull request is filed to [kaminari_themes](https://github.com/amatsuda/kaminari_themes), maintainers have been unable to judge what is correct. What is more, if there is a change in haml or slim syntax, then there is no way to manage templates for multiple versions — or it is a great deal of work. In addition, in the remote chance that a new template engine is implemented, it would probably be necessary to add new template files for all themes.
 
-We decided to deal with this situation by deprecating the `-e haml/slim` option and having users make changes locally when they want to use haml or slim in the future. In other words, we are treating the erb template as something like a single source of truth. In addition, our policy, as of 1.0.0, will be to only have erb when new templates are added, and only accept bugfix patches to the existing haml/slim templates.
+We decided to deal with this situation by deprecating the `-e haml/slim` option and having users make changes locally when they want to use haml or slim in the future. In other words, we are treating the erb templates as something like a single source of truth. In addition, our policy, as of 1.0.0, will be to only have erb when new templates are added, and only accept bugfix patches to the existing haml/slim templates.
 
 
 # `params_on_first_page` Config Has Been Added
 
-Up until now, the link to the first page shown by the `#paginate` method ignored all params. However, there has been a problem that if, for example, a feature such as filtering is implemented using params, and if you return to the first page, then all of the filters would vanish. To fix this, the `params_on_first_page` config was added.
+Up until now, the link to the first page shown by the `#paginate` method ignored all `params`. However, there has been a problem that if, for example, a feature such as filtering is implemented using `params`, and if you return to the first page, then all of the filters would vanish. To fix this, the `params_on_first_page` config was added.
 
 ```ruby
 # Typically this file is located at `config/initializers/kaminari_config.rb`
