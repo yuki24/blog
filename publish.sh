@@ -29,19 +29,15 @@ function yellow() {
 ##
 
 red '--> Running Jekyll'
-Jekyll build
-echo ''
-
-red '--> Gzipping all html, css and js files'
-find $SITE_DIR \( -iname '*.html' -o -iname '*.css' -o -iname '*.js' \) -exec gzip -9 -n {} \; -exec mv {}.gz {} \;
+jekyll build
 echo ''
 
 yellow '--> Uploading css files'
-s3cmd sync --exclude '*.*' --include '*.css' --add-header='Content-Type: text/css' --add-header='Cache-Control: max-age=604800' --add-header='Content-Encoding: gzip' --acl-public --cf-invalidate --no-preserve --verbose $SITE_DIR $BUCKET
+s3cmd sync --exclude '*.*' --include '*.css' --add-header='Content-Type: text/css' --add-header='Cache-Control: max-age=604800' --acl-public --cf-invalidate --no-preserve --verbose $SITE_DIR $BUCKET
 echo ''
 
 yellow '--> Uploading js files'
-s3cmd sync --exclude '*.*' --include '*.js' --add-header='Content-Type: application/javascript' --add-header='Cache-Control: max-age=604800' --add-header='Content-Encoding: gzip' --acl-public --cf-invalidate --no-preserve --verbose $SITE_DIR $BUCKET
+s3cmd sync --exclude '*.*' --include '*.js' --add-header='Content-Type: application/javascript' --add-header='Cache-Control: max-age=604800' --acl-public --cf-invalidate --no-preserve --verbose $SITE_DIR $BUCKET
 echo ''
 
 # Sync media files first (Cache: expire in 10weeks)
@@ -51,7 +47,7 @@ echo ''
 
 # Sync html files (Cache: 2 hours)
 yellow '--> Uploading html files'
-s3cmd sync --exclude '*.*' --include '*.html' --add-header='Content-Type: text/html' --add-header='Cache-Control: max-age=7200, must-revalidate' --add-header='Content-Encoding: gzip' --acl-public --cf-invalidate --no-preserve --verbose $SITE_DIR $BUCKET
+s3cmd sync --exclude '*.*' --include '*.html' --add-header='Content-Type: text/html' --add-header='Cache-Control: max-age=7200, must-revalidate' --acl-public --cf-invalidate --no-preserve --verbose $SITE_DIR $BUCKET
 echo ''
 
 # Sync everything else
